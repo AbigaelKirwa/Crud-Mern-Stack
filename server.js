@@ -23,7 +23,7 @@ app.get("/", (req, res) =>{
     res.send("Express is here")
 });
 
-app.post("/create", (req,res)=>{
+app.post("/api/create", (req,res)=>{
     Post.create({
         title: req.body.title,
         description: req.body.description,
@@ -31,10 +31,16 @@ app.post("/create", (req,res)=>{
     .catch(err=>console.log(err));
 });
 
-app.get("/posts", (req, res)=>{
+app.get("/api/posts", (req, res)=>{
     Post.find()
     .then((items)=>res.json(items))
     .catch((err)=>console.log(err));
+});
+
+app.delete("/api/delete/:id", (req,res)=>{
+    Post.findByIdAndDelete({_id: req.params.id})
+    .then(doc => console.log(doc))
+    .catch(err=> console.log(err));
 });
 
 app.listen(3001, function(){
