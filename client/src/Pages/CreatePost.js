@@ -23,7 +23,7 @@ function CreatePost(){
     const handleClick = (event) =>{
         event.preventDefault();
 
-        axios.post("/api/create", post)
+        axios.post("http://localhost:3001/api/create", post)
         .then(res=>console.log(res)
         .catch(err => console.log(err)));
 

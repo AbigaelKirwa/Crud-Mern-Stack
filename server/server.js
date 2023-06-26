@@ -43,6 +43,18 @@ app.delete("/api/delete/:id", (req,res)=>{
     .catch(err=> console.log(err));
 });
 
+app.put("/api/update/:id", (req, res)=>{
+    Post.findByIdAndUpdate({_id:req.params.id},{
+        title:req.body.title,
+        description:req.body.description
+    })
+    .then(doc => console.log(doc))
+    .catch(err=> console.log(err))
+
+    // console.log(req.params);
+    // console.log(req.body)
+})
+
 app.listen(3001, function(){
     console.log("Server is running")
 });
